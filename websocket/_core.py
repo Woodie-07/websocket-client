@@ -244,7 +244,7 @@ class WebSocket:
         """
         self.sock_opt.timeout = options.get('timeout', self.sock_opt.timeout)
         self.sock, addrs = connect(url, self.sock_opt, proxy_info(**options),
-                                   options.pop('socket', None))
+                                   options.pop('socket', None), options.pop('bind', None))
 
         try:
             self.handshake_response = handshake(self.sock, url, *addrs, **options)
@@ -253,7 +253,7 @@ class WebSocket:
                     url = self.handshake_response.headers['location']
                     self.sock.close()
                     self.sock, addrs = connect(url, self.sock_opt, proxy_info(**options),
-                                               options.pop('socket', None))
+                                               options.pop('socket', None), options.pop('bind', None))
                     self.handshake_response = handshake(self.sock, url, *addrs, **options)
             self.connected = True
         except:
