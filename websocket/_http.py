@@ -107,7 +107,7 @@ def _start_proxied_socket(url, options, proxy):
     return sock, (hostname, port, resource)
 
 
-def connect(url, options, proxy, socket):
+def connect(url, options, proxy, socket, bind):
     # Use _start_proxied_socket() only for socks4 or socks5 proxy
     # Use _tunnel() for http proxy
     # TODO: Use python-socks for http protocol also, to standardize flow
@@ -127,7 +127,7 @@ def connect(url, options, proxy, socket):
 
     sock = None
     try:
-        sock = _open_socket(addrinfo_list, options.sockopt, options.timeout)
+        sock = _open_socket(addrinfo_list, options.sockopt, options.timeout, bind)
         if need_tunnel:
             sock = _tunnel(sock, hostname, port_from_url, auth)
 
