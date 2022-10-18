@@ -167,11 +167,13 @@ def _get_addrinfo_list(hostname, port, is_secure, proxy):
         raise WebSocketAddressException(e)
 
 
-def _open_socket(addrinfo_list, sockopt, timeout):
+def _open_socket(addrinfo_list, sockopt, timeout, bind):
     err = None
     for addrinfo in addrinfo_list:
         family, socktype, proto = addrinfo[:3]
         sock = socket.socket(family, socktype, proto)
+        if bind:
+            sock.bind(bind)
         sock.settimeout(timeout)
         for opts in DEFAULT_SOCKET_OPTION:
             sock.setsockopt(*opts)
