@@ -1,6 +1,35 @@
 ChangeLog
 ============
 
+- 1.6.1
+  - Fix Dispatcher keyboard interrupt. Should solve reconnect loop with rel (#924)
+
+- 1.6.0
+  - Fix teardown issue when ping thread is not properly ended (#918)
+  - Fix double ping wait time on first ping (#912)
+  - Minor typehints improvements (eda6724, 54b3013)
+
+- 1.5.3
+  - Add logic to avoid error in the case where content-length header does not exist, bug introduced in 1.5.2 (#911)
+  - Fix wsdump.py script typing, bug introduced in 1.5.2 (#914)
+
+- 1.5.2
+  - Add typehints (#908)
+  - Fix pytype errors (#906)
+  - Fix args passed to logging function (#898)
+  - Standardize PEP 3101 formatting (c6a445f)
+  - Add more verbose exception for unsuccessful handshake for #900 (f85ae1f)
+
+- 1.5.1
+  - Fix logic bug that can cause disconnects (#893)
+
+- 1.5.0
+  - Refactor and improve ping/pong logic to resolve several issues, including an infinite loop issue during reconnect (#862)
+  - Fix issue where `skip_utf8_validation = True` is ignored (#886)
+  - Fix issue where sslopt `is_ssl` is ignored (#875)
+  - Downgrade "websocket connected" message from logging.warning to logging.info (#888)
+  - Update github actions to newer versions (669fe1b)
+
 - 1.4.2
   - create_dispatcher is determined by URL ws/wss, NOT by presence of sslopt args, to maintain consistency (#875)
   - Remove redundant key generation line (#864)

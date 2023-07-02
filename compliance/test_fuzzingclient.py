@@ -6,7 +6,7 @@ import websocket
 test_fuzzingclient.py
 websocket - WebSocket client library for Python
 
-Copyright 2022 engn33r
+Copyright 2023 engn33r
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ count = json.loads(ws.recv())
 ws.close()
 
 
+case = 0
 for case in range(1, count + 1):
     url = SERVER + '/runCase?case={0}&agent={1}'.format(case, AGENT)
     status = websocket.STATUS_NORMAL
